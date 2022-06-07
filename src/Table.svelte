@@ -9,6 +9,8 @@
     isSortedByFinishedTask,
   } from "./fetchData.js";
 
+  import TableItem from "./TableItem.svelte";
+
   function isJsonString(str) {
     try {
       JSON.parse(str);
@@ -74,59 +76,20 @@
     </thead>
     <tbody>
       {#if !$isSortedByFinishedTask}
+        <!-- Don't sort tasks by finished -->
         {#each $extendData.content as content, index}
-          <tr class="item" class:item__checked={$record[$selectedTab][index]}>
-            <td>
-              <input
-                type="checkbox"
-                on:change={(e) => {
-                  $record[$selectedTab][index] = Number(e.target.checked);
-                }}
-                checked={$record[$selectedTab][index]}
-              />
-              <!-- bind:checked={$record[$selectedTab][index]} -->
-            </td>
-            {#each content as c}
-              <td>{c}</td>
-            {/each}
-          </tr>
+          <TableItem {content} {index} />
         {/each}
       {:else}
         <!-- Finished trophy first -->
         {#each $extendData.content as content, index}
           {#if !$record[$selectedTab][index]}
-            <tr class="item" class:item__checked={$record[$selectedTab][index]}>
-              <td>
-                <input
-                  type="checkbox"
-                  on:change={(e) => {
-                    $record[$selectedTab][index] = Number(e.target.checked);
-                  }}
-                  checked={$record[$selectedTab][index]}
-                />
-              </td>
-              {#each content as c}
-                <td>{c}</td>
-              {/each}
-            </tr>
+            <TableItem {content} {index} />
           {/if}
         {/each}
         {#each $extendData.content as content, index}
           {#if $record[$selectedTab][index]}
-            <tr class="item" class:item__checked={$record[$selectedTab][index]}>
-              <td>
-                <input
-                  type="checkbox"
-                  on:change={(e) => {
-                    $record[$selectedTab][index] = Number(e.target.checked);
-                  }}
-                  checked={$record[$selectedTab][index]}
-                />
-              </td>
-              {#each content as c}
-                <td>{c}</td>
-              {/each}
-            </tr>
+            <TableItem {content} {index} />
           {/if}
         {/each}
       {/if}
@@ -140,54 +103,22 @@
     padding: 0.25em;
     border-collapse: separate;
   }
-  th:first-child,
-  td:first-child {
+  th:first-child {
     width: 10%;
   }
-  th:nth-child(2),
-  td:nth-child(2) {
+  th:nth-child(2) {
     width: 40%;
   }
 
-  th:nth-child(3),
-  td:nth-child(3) {
+  th:nth-child(3) {
     width: 50%;
   }
 
-  th,
-  td {
-    padding-top: 0.25em;
-    padding-left: 0.25em;
-  }
   th {
+    padding-left: 0.25em;
+    padding-top: 0.25em;
     padding-bottom: 0.25em;
     text-align: left;
     font-weight: 600;
-  }
-  td {
-    box-sizing: border-box;
-    padding-bottom: 0.25em;
-    border-top: 1px solid #333;
-    vertical-align: baseline;
-  }
-
-  tbody tr:nth-child(2n) {
-    background-color: #efefef;
-  }
-
-  .item {
-    position: relative;
-  }
-  /* .item__checked::after {
-    content: "";
-    position: absolute;
-    width: 92.5%;
-    border-bottom: 1px solid black;
-    top: 50%;
-    left: 5%;
-    transform: translateY(-50%);
-  } */
-  .item__checked {
-    text-decoration: line-through 4px solid black;
   }
 </style>

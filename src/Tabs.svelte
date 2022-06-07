@@ -1,7 +1,7 @@
 <script>
   import { onDestroy } from "svelte";
 
-  import { rawData, extendData, selectedTab } from "./fetchData.js";
+  import { record, rawData, extendData, selectedTab } from "./fetchData.js";
 
   const unsubscribe = rawData.subscribe(() => {
     selectedTab.set(Object.keys($rawData)[0]);
@@ -26,6 +26,9 @@
         class:tab-label__checked={$selectedTab === $extendData.tabKey[index]}
       >
         {label}
+        {$record[$extendData.tabKey[index]].filter(
+          (recordData) => recordData === 1
+        ).length}/{$record[$extendData.tabKey[index]].length}
       </label>
     {/each}
   </div>

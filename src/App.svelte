@@ -3,14 +3,6 @@
   import Menu from "./Menu.svelte";
   import Tabs from "./Tabs.svelte";
   import Table from "./Table.svelte";
-
-  // *TODO:
-  // - [done.] sort by checked task
-  // - [done.] display (done/total)
-  // - save as a item (by game name load url and record data)
-  // - click whole item also trigger check
-  // - GUI editor (if possible?)
-  // - check if record is existed from url
 </script>
 
 <main>
@@ -44,9 +36,7 @@
       </a>
       の方をご覧になっていただければ幸いです。
 
-      <!-- [デス・ストランディング：トロフィー概要。注意すべきトロフィーとプラチナ取得ガイド: こつこつトロフィーコンプ](http://kotsukotsutrophycomp.blog.jp/archives/2019-11-24-1076279619.html) -->
-      <!-- [Death Stranding Interactive Map | Map Genie](https://mapgenie.io/death-stranding/maps/world) -->
-    </p>
+        </p>
   </div>
 
   <!-- メニュー -->
@@ -117,15 +107,6 @@
     margin-bottom: 1em;
   }
 
-  // .inline-block {
-  //   display: inline-block;
-  // }
-  // .flex {
-  //   display: flex;
-  // }
-  // .aic {
-  //   align-items: center;
-  // }
   .pb-1 {
     padding-bottom: 1rem;
   }
