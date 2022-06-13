@@ -16,7 +16,6 @@
       }}
       checked={$record[$selectedTab][index]}
     />
-    <!-- bind:checked={$record[$selectedTab][index]} -->
   </td>
   {#each content as c}
     <td>{c}</td>
