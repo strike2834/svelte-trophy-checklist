@@ -38,7 +38,7 @@
     type="text"
     id="copy-clipboard"
     value={window.location.host +
-      "/?q=" +
+      "/svelte-trophy-checklist/?q=" +
       encodeURIComponent(JSON.stringify($record))}
     bind:this={textarea}
     on:click={handleCopy}
