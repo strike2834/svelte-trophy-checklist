@@ -39,10 +39,10 @@
   }
 
   const unsubscribe = rawData.subscribe(() => {
-    let rfu = {};
+    let recordFromUrl = {};
     let params = new URLSearchParams(window.location.search);
     if (params.has("q") && isJsonString(params.get("q"))) {
-      rfu = JSON.parse(params.get("q"));
+      recordFromUrl = JSON.parse(params.get("q"));
     }
 
     let r = {};
@@ -53,9 +53,9 @@
       );
     });
 
-    if (compareObjArr(rfu, r)) {
-      record.set(rfu);
-      window.history.pushState("", "", "/");
+    if (compareObjArr(recordFromUrl, r)) {
+      record.set(recordFromUrl);
+      window.history.pushState("", "", "/svelte-trophy-checklist/");
     } else {
       record.set(r);
     }
